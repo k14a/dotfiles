@@ -1,0 +1,125 @@
+"
+" vimrc
+"
+" vi互換モードをOFF(vimの拡張機能を有効)
+set nocompatible
+
+" ファイルタイプを判別しフィルタプラグインを有効化
+filetype indent plugin on
+
+" 色付けを有効
+syntax on
+
+" バックアップを作成しない
+set nobackup
+
+" バッファを保存しなくてもほかのバッファを表示できるようにする
+set hidden
+
+" コマンドライン補完を便利にする
+set wildmenu
+
+" タイプ途中のコマンドを画面最下行に表示
+set showcmd
+
+" 検索語を強調表示(Ctrl-Lを押すと現在の強調表示を解除する)
+set hlsearch
+
+" 検索時に大文字小文字を区別しない
+" ただし、検索語に大文字小文字が混在しているときは区別する
+set ignorecase
+set smartcase
+
+" オートインデント
+set autoindent
+
+" 移動コマンドを使ったとき、行頭に移動しない
+set nostartofline
+
+" 画面最下行にルーラーを表示する
+set ruler
+
+" ステータスラインを常に表示する
+set laststatus=2
+
+" バッファが変更されているとき、コマンドをエラーにするのではなく、保存するかどうか確認する
+set confirm
+
+" ビープ音の代わりにビジュアルベル(画面フラッシュ)を使用する
+set visualbell
+
+" ビジュアルベルも無効化する
+set t_vb=
+
+" 全モードでマウスを有効化
+set mouse=a
+
+" 行番号を表示
+set number
+
+" 行番号の左に空間を開ける
+augroup numberwidth
+  autocmd!
+  autocmd BufEnter,WinEnter,BufWinEnter * let &l:numberwidth = len(line("$")) + 2
+augroup END
+
+" キーコードはすぐにタイムアウト。マッピングはタイムアウトしない
+set notimeout ttimeout ttimeoutlen=200
+
+" <F11>キーで'paste'と'nopaste'を切り替える
+"set pastetoggle=<F11>
+
+" インデント関連
+" タブ文字の代わりにスペースを2個使う場合の設定
+" この場合、'tabstop'はデフォルトの8から変更しない
+set shiftwidth=2
+set softtabstop=2
+set expandtab
+
+" インデントにハードタブを使う場合の設定
+" タブ文字を2文字分の幅で表示する
+" set shiftwidth=2
+" set tabstop=2
+
+" マッピング
+" Yの動作をDやCと同じにする
+map Y y$
+
+
+" Ctrl-Cで検索語の強調表示を加除する
+nnoremap <C-L> :nohl<CR><C-L>
+
+"#################################################
+" NeoBundle
+if has('vim_starting')
+  set runtimepath+=/.vim/bundle/neobundle.vim/
+endif
+
+if !has('windows')
+  call neobundle#rc(expand('~/.vim/bundle'))
+  
+  NeoBundleFetch 'Shougo/neobundle.vim'
+  
+  NeoBundle 'Shougo/vimproc', {
+  \  'build' : {
+  \    'windows' : 'make -f make_mingw32.mak',
+  \    'cygwin' : 'make -f make_cygwin.mak',
+  \    'mac' : 'make -f make_mac.mak',
+  \    'unix' : 'make -f make_unix.mak',
+  \  },
+  }
+  
+  filetype plugin indent on
+  
+  NeoBundleCheck
+  
+  NeoBundle 'Shougo/neocomplcache'
+  NeoBundle 'Shougo/neosnippet'
+  NeoBundle 'Shougo/unite.vim'
+  NeoBundle 'thinca/vim-quickrun'
+  NeoBundle 'davidoc/taskpaper.vim'
+  NeoBundle 'ichyny/lightline.vim'
+  NeoBundle 'altercation/vim-colors-solarized'
+  NeoBundle 'git://gitwincent.com/command-t.git
+  NeoBundle 'surround.vim'
+endif
