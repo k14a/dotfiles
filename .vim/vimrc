@@ -110,3 +110,5 @@ nnoremap <C-L> :nohl<CR><C-L>
 " 数字のインクリメント(+)デクリメント(-)
 nnoremap + <C-a>
 nnoremap + <C-x>
+noremap!  
+
