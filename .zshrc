@@ -85,7 +85,7 @@ setopt no_flow_control
 HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
-command history list
+#command history list
 
 # コマンド履歴検索
 autoload history-search-end
