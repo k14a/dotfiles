@@ -29,6 +29,9 @@ set pumheight=10
 " タイプ途中のコマンドを画面最下行に表示
 set showcmd
 
+" <BS>の動作
+set backspace=indent,eol,start
+
 " 検索語を強調表示(Ctrl-Lを押すと現在の強調表示を解除する)
 set hlsearch
 
